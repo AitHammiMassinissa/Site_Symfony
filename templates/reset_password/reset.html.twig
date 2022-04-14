@@ -1,0 +1,17 @@
+{% extends 'Layouts/base.html.twig' %}
+
+{% block title %}Nouveau Mot de passe{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="mt-4 mb-3 col-md-6 mx-auto">
+            <h1 class="mt-3 mb-5 text-success text-md-center">Réinitialisez votre mot de passe</h1>
+
+            {{ form_start(resetForm) }}
+            {{ form_row(resetForm.plainPassword) }}
+            <button class="btn btn-block btn-primary btn-outline-success text-white">Réinitialisez</button>
+            {{ form_end(resetForm) }}
+        </div>
+    </div>
+
+{% endblock %}

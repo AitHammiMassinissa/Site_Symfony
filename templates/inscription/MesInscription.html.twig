@@ -1,0 +1,60 @@
+{% extends 'Layouts/base.html.twig'%}
+
+{% block body %}
+    <!--Main layout-->
+    <main class="pt-5 mx-lg-5 mb-5">
+        <div class="container-fluid mt-5">
+            <div class="card mb-4 wow fadeIn ">
+                <div class="card-body ">
+                 <h1 class="text-center text-primary"> Historique des inscription</h1>
+                 </div>
+            </div>
+            <div class="row text-center wow fadeIn mb-5" style="visibility: visible; animation-name: fadeIn;">
+                <div class="col-md-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped table-hover">
+                                <thead >
+                                    <tr>
+                                        <th  class=" badge-primary text-wrap"scope="col" >{{ 'Periode'|trans }}</th>
+                                        <th class=" badge-primary text-wrap" scope="col" >{{ 'Mode'|trans }}</th>
+                                        <th class=" badge-primary text-wrap" scope="col">{{ 'Nom '|trans }}</th>
+                                        <th class=" badge-primary text-wrap"scope="col">{{ 'Formation'|trans }}</th>
+                                        <th  class=" badge-primary text-wrap"scope="col" scope="col">{{ 'Prix'|trans }}</th>
+                                        <th class=" badge-primary text-wrap"scope="col"scope="col">{{ 'Supprimer?'|trans }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for order in orders %}
+                               
+                                    <tr>
+                                       
+                                        <td>{{ order.Periode }}</td>
+                                        <td>{{ order.Mode }}</td>
+                                        <td>{{app.user.getFullName()}}</td>
+                                        <td>{{ order.getIdFormation().getNomFormation()}}</td>
+                                        <td >{{ order.getIdFormation().Prix|number_format(2, ',', '.') }}€</td>
+                                        
+                                        <td>
+                                             <a type="button" class="btn btn-block btn-light btn-outline-danger" href="{{ path('app_historique_inscription',{Id:order.getId()}) }}" onclick="event.preventDefault();confirm('Vous voulez vraiment supprimer votre inscrition')&& document.getElementById('js-formation-delete-form-{{ order.getId() }}').submit();">Supprimer&#128686;</a>
+                                       
+                                        <form id="js-formation-delete-form-{{ order.getId() }}" action="{{ path('app_inscription_supprimer',{Id:order.getId()})}}" method="post" style="display: none;">
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token('formation_deletion_'~  order.getId()) }}">
+                                            <input type="hidden" name="_method" Value="DELETE">
+                                        </form>
+                                  
+                                        </td>    
+                                       
+                                 </tr>
+
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+{% endblock %}

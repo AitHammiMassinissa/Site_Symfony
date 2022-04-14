@@ -1,0 +1,18 @@
+
+{% block body %}
+<h1>{{app.user.getFullName()}} Vous propose une date d'inscription </h1>
+<h3>Email : </h3><p>{{app.user.email}} 
+<h3>Date de soumission: </h3><p> {{contact.DateD|date('d-m-Y H:i:s')}}</p>
+<h3>Disponibilité souhaitée:</h3><p> {{contact.Disponibilite}}</p>
+<h3>Nombre de personnes:</h3><p> {{contact.NombreP}}</p>
+<h3>Nom de l'expéditeur:</h3><p> {{contact.Nom}}</p>
+<h3>Prénom de l'expéditeur: </h3><p>{{contact.Prenom}}</p>
+<h3>Numéro de téléphone de l'expéditeur:</h3><p> {{contact.Telephone}}</p>
+<h3>Fonction de l'expéditeur:</h3><p> {{contact.Fonction}}</p>
+<h3>Société de l'expéditeur: </h3><p>{{contact.Societe}}</p>
+<h3>Message de l'expéditeur:</h3><p>{{contact.Message|raw}}</p>
+
+
+
+
+{% endblock %}

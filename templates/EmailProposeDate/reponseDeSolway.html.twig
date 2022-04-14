@@ -1,0 +1,13 @@
+{% extends 'Layouts/base.html.twig'%}
+{% block title 'Réponse'%}
+
+{% block body %}
+<article class="detail bg-white rounded shadow ">
+                <div class="row mb-5">
+                    <div class="col-md-4 mx-auto">
+                         <p>Votre message à été envoyé à <span><a href="https://www.solway-cs.com/">Solway Consuting & Services</a></span>, Veuillez getter notre réponse dans votre messagerie personnelle <span class="text-primary">{{app.user.email}}</span></p>
+                         <p><a  class="text-muted" href="{{ path('app_formations_home') }}">Accueil</a></p>
+                    </div>
+                </div>
+</article>
+{% endblock %}

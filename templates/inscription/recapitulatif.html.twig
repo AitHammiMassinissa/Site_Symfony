@@ -1,0 +1,34 @@
+{% extends 'Layouts/base.html.twig'%}
+{% block title 'Récapitulatif'%}
+{% block body %}
+
+ <div class="row mb-5">
+        <div class="col-lg mt-5 mb-3 ml-3 mr-3 detail bg-transparent rounded shadow mx-auto ">
+        <h1 class="text-center mb-5 ml-3 mr-3 font-weight-bold">Récapitulatif de l'inscription</h1>
+         <p class="h3 font-weight-bold">Titre de la formation<small id="droite_marge1"> {{description.getNomFormation}}</small></p>
+        {% if date.getPeriode()=="Dans 3 mois" %}
+
+         <p class="h3 font-weight-bold"> Date de début<small id="droite_marge2">{{description.getDateDebTroisMois()|date('d-m-y')}}</small> </p>
+
+        {% elseif date.getPeriode()=="Dans 6 mois" %}
+
+         <p class="h3 font-weight-bold">Date de début <small id="droite_marge2"> {{description.getDateDebSixMois()|date('d-m-y')}} </small> </p>
+
+        {% elseif date.getPeriode()=="Dans 1 ans" %}
+
+         <p class="h3 font-weight-bold">Date de début<small id="droite_marge2"> {{description.getDateDebUnAns()|date('d-m-y')}}</small> </p>
+
+        {% endif %}
+        <p class="h3 font-weight-bold">Disponibilité<small id="droite_marge3">{{description.getDisponibilite()}}</small> </p>
+         <p class="h3 font-weight-bold">Periode<small id="droite_marge6">{{date.Periode}}</small></p>
+         <p class="h3 font-weight-bold">Mode<small id="droite_marge7"> {{date.Mode}}</small></p>
+        <p class="h3 font-weight-bold">Lieu <small id="droite_marge4">{{description.getLieu()}}</small> </p>
+        <p class="h3 font-weight-bold"> Prix<small id="droite_marge5"> {{description.getPrix()}}</small> </p>
+
+                   <a href="{{path('app_adresse_facturation',{'id':description.id ,'Id':date.id})}}"  <button type="btn" class="btn btn-block btn-light btn-outline-primary">
+                      Payement 
+                    </button></a>
+    </div>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'Layouts/base.html.twig' %}
+
+{% block title %}S’inscrire{% endblock %}
+{% block body %}
+    <div class="row mb-5">
+        <div class="col-md-6 mx-auto">
+
+            <h1 class=" my-5 text-center text-success">S’inscrire</h1>
+
+            {{ form_start(registrationForm) }}
+            <div class="row">
+                <div class="mt-3 col-md-6">
+                    {{ form_row(registrationForm.firstName) }}
+                </div>
+                <div class="mt-3 col-md-6">
+                    {{ form_row(registrationForm.lastName) }}
+                </div>
+
+
+            </div>
+
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            {{ form_row(registrationForm.civilite) }}
+            {{ form_row(registrationForm.numero) }}
+            {{ form_row(registrationForm.agreeTerms) }}
+            <div class="container ">
+                <p class=" h6  text-break text-muted mb-3">
+                    <small>
+                        En cochant sur la case, vous acceptez nos conditions générales. Vous recevrez peut-être des notifications par texto et par mail de notre part pour connaitre toutes les mises à jour disponible
+                    </small>
+                </p>
+            </div>
+            <div class="container mb-4 ">
+                <button type="submit" class=" btn btn-lg btn-block btn-primary">S’inscrire</button>
+            </div>
+            <p class="mt-5 mb-5 text-center text-muted">Vous avez déja un compte? <a href="{{ path('app_login') }}">Connexion</a></p>
+
+            {{ form_end(registrationForm) }}
+
+        </div>
+    </div>
+
+{% endblock %}

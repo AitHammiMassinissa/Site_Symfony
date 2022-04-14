@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import "shared/variables";
+@import "~bootstrap/scss/bootstrap";
+body {
+    font-family: $print-font,sans-serif;
+/*  background-image: url("~/public/images/background3.jpeg");*/
+}
+#color-footer{
+  background-color: black;
+}
+.Typographie{
+  font-family: "Gill Sans", sans-serif;
+}
+
+.tl{
+    width: 200px;
+    height: 200px;
+    transition: transform 0.6s ease-out;
+    &:hover{
+            transform: scale(1.075);
+    }
+}
+.alert{
+    padding: 10px;
+    color: white;
+    text-align: center;
+    &.alert-success{
+        background-color: green;
+    }
+    &.alert-suppression{
+        background-color: green;
+    }
+    &.alert-updated{
+        background-color: blue;
+    }
+    &.alert-error{
+        background-color: red;
+    }
+}
+.vich-image {
+    .form-check{
+        @extend .mt-3
+    }
+    img{
+    @extend .mb-3;
+    @extend .rounded;
+    @extend .shadow;
+    @extend .img-thumbnail;
+}
+}
+.formation{
+    width: 300px;
+    height: 320px;
+}
+#gauche{
+float: left;
+}
+#droite_marge1{
+    text-align: center;
+    margin-left: 12.5%;
+}
+#droite_marge2{
+    text-align: center;
+    margin-left: 21%;
+}
+#droite_marge3{
+    text-align: center;
+    margin-left: 23.5%;
+}
+#droite_marge4{
+    text-align: center;
+    margin-left: 34%;
+}
+#droite_marge5{
+    text-align: center;
+    margin-left: 35%;
+}
+#droite_marge6{
+    text-align: center;
+    margin-left: 29.5%;
+}
+#droite_marge7{
+    text-align: center;
+    margin-left: 32.5%;
+
+}
+
+
+
+
+
+  

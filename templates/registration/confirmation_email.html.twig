@@ -1,0 +1,13 @@
+<html>
+{% block body %}
+<h1>Bonjour</h1>
+<div class="container">
+<div class="row mb-5">
+<p class="text-center text-success"> Veuillez confirmer votre adresse courriel en cliquant sur le lien suivant: <br><br>
+    <a class="text-center text-muted" href="{{ signedUrl|raw }}">Confirmer mon courriel</a>.
+    Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+</p>
+</div>
+</div>
+{% endblock %}
+</html>

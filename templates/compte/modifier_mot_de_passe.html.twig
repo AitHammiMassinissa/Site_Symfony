@@ -1,0 +1,15 @@
+{% extends 'Layouts/base.html.twig' %}
+{% block title 'Modifier profile' %}
+{% block body %}
+    <div class="row mb-5">
+        <div class="col-md-6 mx-auto">
+            <h1 class="my-5 text-primary  text-center"> Modifier le mot de passe</h1>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-primary btn btn-block">
+                Changer le mot de passe
+            </button>
+         {{ form_end(form) }}
+    <div>
+    </div>
+{% endblock %}

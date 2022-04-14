@@ -1,0 +1,50 @@
+{% extends 'Layouts/base.html.twig'%}
+{% block title 'Formations'%}
+{% block body %}
+        {% if formations|length>0 %}
+        <h1 class="mb-4 text-center text-muted">{{pluralize(formations|length,'formation') }}</h1>
+<div class="container mb-5">
+    {% for row in formations|batch(3)  %}
+    <div class="row  mb-5 mt-3 mx-auto">
+        {% for formation in row %}
+            <div class=" col-sm-4 mb-3 rounded ">
+                <article class="bg-white rounded shadow">
+                    <div class="  overflow-hidden rounded-top">
+                    <a href="{{ path('app_formations_voirdetail',{id:formation.id}) }}">
+                    <img src="{{ (formation.getImageName() ? vich_uploader_asset(formation) :asset('images/nondisponible.jpg') )| imagine_filter('squared_thumbnail_medium') }}"
+                         alt="{{ formation.getNomFormation() }}"
+                         class="tl w-100 "/>
+                    </a>
+                        <h2 class=" h5 text-center mt-4"><a class="text-dark text-decoration-none " href="{{ path('app_formations_voirdetail',{id:formation.id}) }}">{{formation.getNomFormation()}}</a> </h2>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                       <div class="mt-3">
+                                           <a type="button" class="btn btn-block border-secondary btn-outline-primary" href="{{ path('app_formations_modifier',{id:formation.id}) }}" >Modifier &#128736; </a>
+                                           <a type="button" class="btn btn-block btn-light btn-outline-danger" href="{{ path('app_formations_home') }}" onclick="event.preventDefault();confirm('Vous voulez vraiment supprimer cette formation')&& document.getElementById('js-formation-delete-form-{{ formation.getId() }}').submit();">Supprimer&#128686;</a>
+                                       </div>
+                                        <form id="js-formation-delete-form-{{ formation.getId() }}" action="{{ path('app_formations_supprimer',{id:formation.id}) }}" method="post" style="display: none;">
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token('formation_deletion_'~ formation.getId()) }}">
+                                            <input type="hidden" name="_method" Value="DELETE">
+                                        </form>
+
+                                    {% endif %}
+                        <div class="text-center mt-3 mb-3">
+                            <p class="text-info">
+                                <small>Created  :<time datetime="{{formation.getCreatedAt()|date('Y-m-d H:i:s') }}">{{ formation.getCreatedAt()|ago }}<br>
+                                        Update : {{formation.getUpdatedAt()|ago }}</time></small>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+    {% else %}
+        <p class="h1 mt-5 text-center">Il n'y a pas encore de formations disponible <br>
+            <a href="{{ path('app_formations_creation') }}">Crée une formation </a></p>
+    {% endif %}
+
+
+
+{% endblock %}

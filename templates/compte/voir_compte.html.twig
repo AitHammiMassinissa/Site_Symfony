@@ -1,0 +1,28 @@
+{% extends 'Layouts/base.html.twig' %}
+{% block title 'Profile' %}
+{% block body %}
+    <div class="row mb-5">
+        <div class="col-md-6 mx-auto text-center">
+            <h1 class="my-5 text-primary"> Profile </h1>
+            <img class="shadow rounded-circle" src="{{ app.user.get_gravatar }}" alt=" Avatar de {{app.user.fullName}}">
+            <p class="mt-3 mb-3 h6 text-primary">Nom :</p>
+            <h2>{{ app.user.civilite}} {{ app.user.fullName }}</h2>
+            <p class="mt-3 mb-3  h6 text-primary">Adresse électronique:</p>
+            <p class="mt-4 lead">{{ app.user.getEmail()}}</p>
+            <h6><p class="mt-3 mb-3 text-primary">Numéro :</p> {{ app.user.numero }}</h6>
+            <hr>
+            <p>
+                <small>
+                    Crée le {{ app.user.createdAt|date('d-m-y à H:i:s')}}
+                </small>
+                <br>
+                <small>
+                    Mise à jour le {{ app.user.updatedAt|date('d-m-y à H:i:s')}}
+                </small>
+            </p>
+            <p>
+            <a href="{{ path('app_compte_modifier') }}">Modifier le compte</a> | <a href="{{ path('app_compte_modifier_mot_de_passe') }}"> Changer le mot de passe</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

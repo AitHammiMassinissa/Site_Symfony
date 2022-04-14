@@ -1,0 +1,28 @@
+{% extends 'Layouts/base.html.twig' %}
+{% block title 'Modifier cordonnées' %}
+{% block body %}
+    <div class="row mb-5">
+        <div class="col-md-6 mx-auto">
+       <h1 class="my-5 text-primary  text-center"> Votre adresse de facturation</h1>
+        {{ form_start(formulaireuseradresse) }}
+
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(formulaireuseradresse.Societe) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(formulaireuseradresse.NumeroDeRue) }}
+                </div>
+            </div>
+            {{ form_row(formulaireuseradresse.NomDeRue) }}
+            {{ form_row(formulaireuseradresse.CodePostale) }}
+            {{ form_row(formulaireuseradresse.Ville) }}
+             {{ form_row(formulaireuseradresse.pays) }}
+             <button type="submit" class="mt-3 mb-3 btn btn-primary btn-lg btn-block">
+                Appliquer les changements
+            </button>
+       {{ form_end(formulaireuseradresse) }}
+           
+        </div>
+    </div>
+{% endblock %}

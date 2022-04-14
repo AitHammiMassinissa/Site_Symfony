@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-sm navbar-dark  mb-4" id="color-footer">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="{{ asset('images/logo.jpg') }}"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse mb-1" id="navbarsExample03">
+            <ul class="navbar-nav ml-auto mb-sm-0">
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item ">
+                    <a class="nav-link active " tabindex="-1" href="{{ path('app_formations_home') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a type="hidden" class="nav-link active" tabindex="-1" href="{{ path('app_formations_creation') }}">Formations &plus;</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('app_compte') }}" tabindex="-1" >Compte</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active" href="#" tabindex="-1" onclick="event.preventDefault();document.getElementById('js-logout-form').submit();">Déconnexion</a>
+                </li>
+                <form id="js-logout-form" action="{{ path('app_logout') }}" method="post" style="display: none;">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+                </form>
+                {% elseif is_granted('ROLE_USER') %}
+                <li class="nav-item ">
+                    <a class="nav-link active " tabindex="-1" href="{{ path('app_formations_home') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active " href="{{ path('app_compte') }}" tabindex="-1" >Compte</a>
+               
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="dropdown06" data-bs-toggle="dropdown" aria-expanded="false">Historique</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown06">
+                        <li><a class="dropdown-item" href="{{ path('payment_orders') }}">Historique des payements</a></li>
+                        <li><a class="dropdown-item" href="{{path('app_historique_inscription')}}">Historique des inscriptions</a></li>
+                    </ul>
+                 </li>
+                
+                    <li class="nav-item ">
+                        <a class="nav-link active text-danger" href="#" tabindex="-1" onclick="event.preventDefault();document.getElementById('js-logout-form').submit();">Déconnexion</a>
+                    </li>
+                    <li>
+                    
+                     </li>
+                    <form id="js-logout-form" action="{{ path('app_logout') }}" method="post" style="display: none;">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+                    </form>
+                    {# utilisateur non connecter  #}
+                {% else %}
+                <li class="nav-item ">
+                    <a class="nav-link active" tabindex="-1" href="{{ path('app_formations_home') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('app_register') }}" tabindex="-1" >S’inscrire</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active text-success " tabindex="-1" href="{{ path('app_login') }}">Connexion</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
